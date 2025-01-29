@@ -29,20 +29,21 @@
             width: 120px;
             text-decoration: none;
             color: black;
+            cursor: pointer;
         }
         .home-button:hover, .candidate-button:hover {
             background-color: #f0f0f0;
-            cursor: pointer;
         }
-        .content {
+        .content-wrapper {
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            justify-content: space-between;
+            align-items: flex-start;
             margin: 20px;
+            padding: 20px;
         }
         .photo {
-            width: 100px;
-            height: 200px;
+            width: 250px;
+            height: auto;
             background-color: #fffacd;
             border: 2px solid #000;
             border-radius: 10px;
@@ -50,12 +51,18 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
-            color: black;
+            text-align: center;
+        }
+        .photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
         .biography {
-            width: 300px;
+            margin-left: 20px;
             font-size: 1rem;
             color: black;
+            max-width: 600px;
         }
         .footer {
             text-align: center;
@@ -69,26 +76,64 @@
         .footer a:hover {
             text-decoration: underline;
         }
+        .hidden {
+            display: none;
+        }
     </style>
+    <script>
+        function showCandidate(candidateId) {
+            // Hide all sections
+            document.querySelectorAll('.content-wrapper').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected candidate's section
+            document.getElementById(candidateId).classList.remove('hidden');
+        }
+    </script>
 </head>
 <body>
     <div class="header">
-        <a href="#" class="home-button">Home</a>
-        <a href="#" class="candidate-button">Daniel Noboa</a>
+        <button class="home-button" onclick="showCandidate('home')">Home</button>
+        <button class="candidate-button" onclick="showCandidate('candidato1')">Daniel Noboa</button>
+        <button class="candidate-button" onclick="showCandidate('candidato2')">Luisa Gonzalez</button>
     </div>
-    <div>
-        <img class="content" src="https://upload.wikimedia.org/wikipedia/commons/4/4b/President_Noboa_of_Ecuador_in_April_of_2024.jpg" alt="Foto del candidato" style="width: 30%; height: 50%; border-radius: 8px;">
+
+    <!-- Sección Home -->
+    <div id="home" class="content-wrapper hidden">
+        <h2>Bienvenido a la página de candidatos presidenciales</h2>
     </div>
+
+    <!-- Sección Candidato 1 -->
+    <div id="candidato1" class="content-wrapper">
+        <div class="photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/President_Noboa_of_Ecuador_in_April_of_2024.jpg" alt="Foto del candidato 1">
+        </div>
         <div class="biography">
-            <h2>Biografía</h2>
+            <h2>Biografía Candidato 1</h2>
             <p>
                 Daniel Roy Gilchrist Noboa Azín (Miami, 30 de noviembre de 1987) es un administrador, empresario y político ecuatoriano-estadounidense que se desempeña como el actual Presidente de la República del Ecuador desde el 23 de noviembre de 2023. Asumió el cargo a la edad de 35 años al ser el más joven en ser elegido democráticamente.
             </p>
         </div>
     </div>
+
+    <!-- Sección Candidato 2 -->
+    <div id="candidato2" class="content-wrapper hidden">
+        <div class="photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Luisa_Gonz%C3%A1lez_-_2022.jpg" alt="Foto del candidato 2">  
+        </div>
+        <div class="biography">
+            <h2>Biografía </h2>
+            <p>
+                Luisa Magdalena González Alcívar (Quito, 22 de noviembre de 1977) es una abogada y política ecuatoriana que se desempeñó en diversos cargos durante el gobierno del expresidente Rafael Correa.1​ Fue candidata presidencial del Movimiento Revolución Ciudadana en las elecciones presidenciales de Ecuador de 2023.
+            </p>
+        </div>
+    </div>
+
     <div class="footer">
         <a href="https://www.cne.gob.ec/">https://www.cne.gob.ec/</a>
         <a href="https://www.presidencia.gob.ec/">https://www.presidencia.gob.ec/</a>
     </div>
 </body>
 </html>
+
